@@ -37,7 +37,7 @@ const display = target => time => target(time)
 // Takes a template string and uses it to return clock time formatted based on the criteria from the string. In this example, the template is "hh:mm:ss tt". From there, formatClock will replace the placeholders with hours, minutes, seconds, time of the day.
 
 const formatClock = format => time => {
-    format.replace("hh",time.hours).replace("mm",time.minutes).replace("ss",time.seconds).replace("tt",time.AMPM)
+    return format.replace("hh",time.hours).replace("mm",time.minutes).replace("ss",time.seconds).replace("tt",time.AMPM)
 }
 
 // function: prependZero
