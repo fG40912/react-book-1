@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>React Samples</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- <section id="baked-salmon">
+            <h1>Baked Salmon</h1>
+            <ul class="ingredients">
+              <li>2 lb salmon</li>
+              <li>5 sprigs fresh rosemary</li>
+              <li>2 tablespoons olive oil</li>
+              <li>2 small lemons</li>
+              <li>1 teaspoon kosher salt</li>
+              <li>4 cloves of chopped garlic</li>
+            </ul>
+            <section class="instructions">
+              <h2>Cooking Instructions</h2>
+              <p>Preheat the oven to 375 degrees.</p>
+              <p>Lightly coat aluminum foil with oil.</p>
+              <p>Place salmon on foil</p>
+              <p>Cover with rosemary, sliced lemons, chopped garlic.</p>
+              <p>Bake for 15-20 minutes until cooked through.</p>
+              <p>Remove from oven.</p>
+            </section>
+        </section> -->
+
+        <!-- Target Container -->
+        <div id="root"></div>
+
+        <!-- React library & ReactDOM (Development Version)-->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        
+        <script>
+            const items = () => ["2 lb salmon","5 springs fresh rosemary","2 tablespoons olive oil","2 small lemons","1 teaspoon kosher salt","4 cloves of chopped garlic"]
+            const instructions = () => ["Preheat the oven to 375 degress.","Lightly coat aluminum foil with oil.","Place salmon on foil","cover with rosemary, sliced lemons, chopped gralic.","Bake for 15-20 minutes until cooked through.","Remove from oven."]
+
+            const IngredientsList = ({items}) => {
+                return React.createElement("ul",{className:"ingredients"},
+                    items.map((item,index) => React.createElement("li",{key:index},item))
+                )
+            }
+
+            const InstructionsList = ({instructions}) => {
+                return React.createElement("section",{className:"instructions"},
+                    React.createElement("h2",null,"Cooking Instructions"),
+                    instructions.map((instruction,index) => React.createElement("p",{key:index},instruction))
+                )
+            }
+
+            const recipe = () => React.createElement("section",{id:"baked-salmon"},
+                React.createElement("h1",null,"Baked Salmon"),
+                React.createElement(IngredientsList,{items:items()},null),
+                React.createElement(InstructionsList,{instructions:instructions()},null)
+            )
+
+            ReactDOM.render(recipe(),document.getElementById("root"))
+        </script>
+    </body>
+</html>
