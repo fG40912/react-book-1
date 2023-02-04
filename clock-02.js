@@ -48,6 +48,14 @@ const prependZero = key = time => ({
     key: time[key] < 10 ? "0" + time[key].toString() : time[key].toString()
 })
 
+const compose = (...fns) => {
+    return (arg) =>
+        fns.reduce(
+            (composed, f) => f(composed),
+            arg
+        )
+}
+
 // function: convertToCivilianTime
 // A single function that takes clock time as an argument and transforms it into civilian time by using both civilian hours.
 
