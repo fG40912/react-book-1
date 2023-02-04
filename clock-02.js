@@ -43,9 +43,9 @@ const formatClock = format => time => {
 // function: prependZero
 // Takes an object's key as an argument and prepends a zero to the value stored under that object's key. It takes in a key to a specific field and prepends values with a zero if the value is less than 10.
 
-const prependZero = key = time => ({
+const prependZero = key => time => ({
     ...time,
-    key: time[key] < 10 ? "0" + time[key].toString() : time[key].toString()
+    [key]: time[key] < 10 ? "0" + time[key].toString() : time[key].toString()
 })
 
 const compose = (...fns) => {
@@ -88,7 +88,7 @@ const startTicking = () => {
             convertToCivilianTime,
             doubleDigit,
             formatClock("hh:mm:ss tt"),
-            display
+            display(log)
         ),
         oneSecond()
     )
