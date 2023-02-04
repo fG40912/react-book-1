@@ -47,3 +47,43 @@ const prependZero = key = time => ({
     ...time,
     key: time[key] < 10 ? "0" + time[key].toString() : time[key].toString()
 })
+
+// function: convertToCivilianTime
+// A single function that takes clock time as an argument and transforms it into civilian time by using both civilian hours.
+
+const convertToCivilianTime = time => {
+    return compose(
+        appendAMPM,
+        civilianHours
+    )(time)
+}
+
+// function: doubleDigits
+// A single function that takes civilian clock time and makes sure the hours, minutes and seconds display double digits by prepending zeros where needed.
+
+const doubleDigit = civilianTime => {
+    return compose(
+        prependZero("hours"),
+        prependZero("minutes"),
+        prependZero("seconds")
+    )(civilianTime)
+}
+
+// function: startTicking
+// Starts the clock by setting an interval that invokes a callback every second. The callback is composed using all the our functions. Every second the console is cleared, currentTime is obtained, converted, civilianized, formatted, and displayed.
+
+const startTicking = () => {
+    return setInterval(
+        compose(
+            getCurrentDate,
+            serializerClockTime,
+            convertToCivilianTime,
+            doubleDigit,
+            formatClock("hh:mm:ss tt"),
+            display
+        ),
+        oneSecond()
+    )
+}
+
+startTicking()
