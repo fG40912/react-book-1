@@ -46,24 +46,17 @@
         <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
         
         <script>
+            const items = ["2 lb salmon","5 springs fresh rosemary","2 tablespoons olive oil","2 small lemons","1 teaspoon kosher salt","4 cloves of chopped garlic"]
+            const instructions = ["Preheat the oven to 375 degress.","Lightly coat aluminum foil with oil.","Place salmon on foil","cover with rosemary, sliced lemons, chopped gralic.","Bake for 15-20 minutes until cooked through.","Remove from oven."]
+
             const recipe = React.createElement("section",{id:"baked-salmon"},
                 React.createElement("h1",null,"Baked Salmon"),
-                React.createElement("ul",{class:"ingredients"},
-                    React.createElement("li",null,"2 lb salmon"),
-                    React.createElement("li",null,"5 spring fresh rosemary"),
-                    React.createElement("li",null,"2 tablespoons olive oil"),
-                    React.createElement("li",null,"2 small lemons"),
-                    React.createElement("li",null,"1 teaspoon kosher salt"),
-                    React.createElement("li",null,"4 cloves of chopped garlic")
+                React.createElement("ul",{className:"ingredients"},
+                    items.map((item,index) => React.createElement("li",{key:index},item))
                 ),
-                React.createElement("section",{class:"instructions"},
+                React.createElement("section",{className:"instructions"},
                     React.createElement("h2",null,"Cooking Instructions"),
-                    React.createElement("p",null,"Preheat the oven to 375 degress."),
-                    React.createElement("p",null,"Lightly coat aluminum foil with oil."),
-                    React.createElement("p",null,"Place salmon on foil."),
-                    React.createElement("p",null,"Clover with rosemary, sliced lemons, chopped garlic."),
-                    React.createElement("p",null,"Bake for 15-20 minutes until cooked through."),
-                    React.createElement("p",null,"Remove from oven.")
+                    instructions.map((instruction,index) => React.createElement("p",{key:index},instruction))
                 )
             )
 
