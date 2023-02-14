@@ -1,8 +1,9 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import colorsData from "./color-data.json"
 import { v4 } from "uuid"
 
 const ColorContext = createContext()
+export const useColors = () => useContext(ColorContext)
 
 export default function ColorProvider({children}){
     const [colors,setColors] = useState(colorsData)
@@ -13,8 +14,8 @@ export default function ColorProvider({children}){
     }
 
     const rateColor = (id,rating) => {
-        setColors(colors.map((color,index)=>{
-            if(index === id) color.rating = rating
+        setColors(colors.map((color)=> {
+            return (color.id === id ? { ...color, rating } : color)
         }))
     }
 
