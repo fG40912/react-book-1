@@ -10,6 +10,8 @@ const loadJSON = key => {
 
 function GithubUser({ login }){
 	const [data, setData] = useState(loadJSON(`user:${login}`))
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState()
 
 	useEffect(
 		() => {
@@ -31,15 +33,30 @@ function GithubUser({ login }){
 	useEffect(
 		() => {
 			if(!login) return
-			if(data && data.login === login) return	// complain about data.login cannot be accessed
+			setLoading(true)
+			if(data && data.login === login){
+				setLoading(false)
+				return
+			}	// complain about data.login cannot be accessed
 			else{
-				fetch(`https://api.github.com/users/${login}`).then(response => response.json()).then(setData).catch(console.error)
+				fetch(`https://api.github.com/users/${login}`).then(response => response.json()).then(setData).then(() => setLoading(false)).catch(setError)
 			}
 		},[login]
 	)
-
-	if(data) return(<pre>{ JSON.stringify(data) }</pre>)
-	else return null
+	
+	if(loading) return(<h1>Loading ...</h1>)
+	else if(error) return(<pre>{ JSON.stringify(error, null, 2) }</pre>)
+	else if(!data) return(null)
+	else return(
+		<div className="githubUser">
+			<img src={ data.avatar_url } alt={ data.login } style={{ width:200 }}/>
+			<div>
+				<h1>{ data.login }</h1>
+				<p>{ data.name }</p>
+				<p>{ data.location }</p> 
+			</div>
+		</div>
+	)
 }
 
 function App() {
