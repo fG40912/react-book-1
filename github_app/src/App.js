@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useFetch } from "./useFetch";
 
 const saveJSON = (key, data) => {
 	localStorage.setItem(key,JSON.stringify(data))
@@ -9,40 +10,7 @@ const loadJSON = key => {
 }
 
 function GithubUser({ login }){
-	const [data, setData] = useState(loadJSON(`user:${login}`))
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState()
-
-	useEffect(
-		() => {
-			if(!data) return
-			if(data.login === login) return
-
-			const { name, avatar_url, location } = data
-			saveJSON(`user:${login}`,
-				{
-					name,
-					login,
-					avatar_url,
-					location
-				}
-			)
-		},[data]
-	)
-
-	useEffect(
-		() => {
-			if(!login) return
-			setLoading(true)
-			if(data && data.login === login){
-				setLoading(false)
-				return
-			}	// complain about data.login cannot be accessed
-			else{
-				fetch(`https://api.github.com/users/${login}`).then(response => response.json()).then(setData).then(() => setLoading(false)).catch(setError)
-			}
-		},[login]
-	)
+	const { data, loading, error } = useFetch(`https://api.github.com/users/${login}`)
 	
 	if(loading) return(<h1>Loading ...</h1>)
 	else if(error) return(<pre>{ JSON.stringify(error, null, 2) }</pre>)
