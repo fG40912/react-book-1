@@ -1,5 +1,6 @@
 import React from "react"
 import Fetch from "./Fetch"
+import UserRepositories from "./UserRepositories"
 
 const saveJSON = (key, data) => {
 	localStorage.setItem(key,JSON.stringify(data))
@@ -18,6 +19,7 @@ function UserDetails({ data }){
 				<p>{ data.name }</p>
 				<p>{ data.location }</p> 
 			</div>
+			<UserRepositories login={data.login} onSelect={repoName => console.log(`${repoName} selected`)}/>
 		</div>
     )
 }
