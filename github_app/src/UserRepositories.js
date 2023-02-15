@@ -1,4 +1,4 @@
-import React, {use} from "react"
+import React from "react"
 import Fetch from "./Fetch"
 import RepoMenu from "./RepoMenu"
 
