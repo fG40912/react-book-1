@@ -2,7 +2,8 @@ import { useEffect } from "react"
 import { useIterator } from "./useIterator"
 
 export default function RepoMenu({repositories, selected, onSelect=f=>f}){
-    const [{name},prev,next] = useIterator(repositories, selected?repositories.findIndex(repo => repo.name === selected) : null)
+    const res = selected ? repositories.findIndex(repo => repo.name === selected) : null
+    const [{name},prev,next] = useIterator(repositories, res)
 
     useEffect(
         () => {

@@ -5,7 +5,7 @@ import RepositoryReadme from "./RepositoryReadme";
 
 function App() {
 	const [login, setLogin] = useState("moonhighway")
-	const [repo, setRepo] = useState("learning-react")
+	const [repo, setRepo] = useState("apollo-federation-workshop") // apollo-federation-workshop
 
 	return (
 		<>

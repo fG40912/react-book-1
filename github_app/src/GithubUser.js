@@ -10,7 +10,6 @@ const loadJSON = key => {
 }
 
 function UserDetails( data ){
-	console.log("rendering UserDetails")
     return(
         <div className="githubUser">
 			<img src={ data.avatar_url } alt={ data.login } style={{ width:200 }}/>
