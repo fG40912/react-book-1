@@ -7,6 +7,7 @@ export function useFetch(url){
 
     useEffect(
         () => {
+            setLoading()
             if(!url) return
             fetch(url).then(response => response.json()).then(setData).then(setLoading).catch(setError)
         },[url]

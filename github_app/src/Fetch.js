@@ -6,6 +6,5 @@ export default function Fetch({ uri, renderSuccess, loadingFallback=<p>Loading .
 
     if(loading) return loadingFallback
     if(error) return renderError(error)
-    if(data) return renderSuccess({data})
-    return null
+    if(data) return renderSuccess(data)
 }

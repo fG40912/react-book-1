@@ -1,6 +1,5 @@
 import React from "react"
 import Fetch from "./Fetch"
-import UserRepositories from "./UserRepositories"
 
 const saveJSON = (key, data) => {
 	localStorage.setItem(key,JSON.stringify(data))
@@ -10,7 +9,8 @@ const loadJSON = key => {
 	return key && JSON.parse(localStorage.getItem(key))
 }
 
-function UserDetails({ data }){
+function UserDetails( data ){
+	console.log("rendering UserDetails")
     return(
         <div className="githubUser">
 			<img src={ data.avatar_url } alt={ data.login } style={{ width:200 }}/>
@@ -19,7 +19,6 @@ function UserDetails({ data }){
 				<p>{ data.name }</p>
 				<p>{ data.location }</p> 
 			</div>
-			<UserRepositories login={data.login} onSelect={repoName => console.log(`${repoName} selected`)}/>
 		</div>
     )
 }
