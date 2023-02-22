@@ -4,3 +4,7 @@ function gnar() {
     );
     return <h1>gnarly</h1>;
 }
+
+function Image() {
+    return <img src="/img.png" />;
+}
